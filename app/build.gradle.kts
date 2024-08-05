@@ -28,6 +28,7 @@ android {
             buildConfigField("Long", "API_CACHE", "10485760L")                              // 10MB
             buildConfigField("String", "API_URL", "\"https://rss.applemarketingtools.com/api/v2/\"")
             buildConfigField("String", "DATA_STORE_NAME", "\"settings\"")
+            buildConfigField("Integer", "ALBUM_DOWNLOAD_LIMIT", "100")
         }
 
         release {
