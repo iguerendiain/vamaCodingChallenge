@@ -1,7 +1,10 @@
 package iguerendiain.vamacodingchallenge.model
 
-data class Genre(
-    val genreId: Int,
-    val name: String,
-    val url: String
-)
+import io.realm.kotlin.types.RealmObject
+import io.realm.kotlin.types.annotations.PrimaryKey
+
+class Genre: RealmObject {
+    @PrimaryKey var genreId: Int = -1
+    var name: String = ""
+    var url: String = ""
+}

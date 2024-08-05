@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id("io.realm.kotlin")
 }
 
 android {
@@ -91,5 +92,10 @@ dependencies {
     implementation(libs.soloader)
     implementation(libs.flipper)
     implementation(libs.flipper.network.plugin)
+
+    // Realm
+    implementation(libs.library.base)
+//    implementation("io.realm.kotlin:library-sync:1.16.0")
+    implementation(libs.kotlinx.coroutines.core)
 
 }

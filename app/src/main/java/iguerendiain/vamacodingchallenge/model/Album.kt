@@ -1,16 +1,21 @@
 package iguerendiain.vamacodingchallenge.model
 
+import io.realm.kotlin.ext.realmListOf
+import io.realm.kotlin.types.RealmInstant
+import io.realm.kotlin.types.RealmList
+import io.realm.kotlin.types.RealmObject
+import io.realm.kotlin.types.annotations.PrimaryKey
 import java.util.Date
 
-data class Album(
-    val artistName: String,
-    val id: String,
-    val name: String,
-    val releaseDate: Date,
-    val kind: String,
-    val artistId: String,
-    val artistUrl: String,
-    val artworkUrl100: String,
-    val genres: List<Genre>,
-    val url: String
-)
+class Album(): RealmObject {
+    var artistName: String = ""
+    @PrimaryKey var id: String = ""
+    var name: String = ""
+    var releaseDate: RealmInstant = RealmInstant.now()
+    var kind: String = ""
+    var artistId: String = ""
+    var artistUrl: String = ""
+    var artworkUrl100: String = ""
+    var genres: RealmList<Genre> = realmListOf()
+    var url: String = ""
+}

@@ -60,7 +60,8 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
             if (downloadAlbumsResult.isSuccess) {
                 downloadAlbumsResult.getOrDefault(listOf()).let { downloadedAlbums ->
                     _currentAlbums.value = downloadedAlbums
-                    mainRepository.storeAlbums(downloadedAlbums)
+                    mainRepository.clearLocalAlbums()
+                    mainRepository.storeLocalAlbums(downloadedAlbums)
                 }
             }else _eventBus.send(EVENT_DOWNLOAD_FAILED)
 

@@ -1,27 +1,29 @@
 package iguerendiain.vamacodingchallenge.di
 
-//import android.app.Application
-//import dagger.Module
-//import dagger.Provides
-//import dagger.hilt.InstallIn
-//import dagger.hilt.components.SingletonComponent
-//import nacholab.themovies.storage.MainDAO
-//import nacholab.themovies.storage.MainDB
-//import nacholab.themovies.storage.MainDBBuilder
-//import javax.inject.Singleton
-//
-//@Module
-//@InstallIn(SingletonComponent::class)
-//object DBModule {
-//
-//    @Provides
-//    @Singleton
-//    fun provideMainDB(app: Application): MainDB {
-//        return MainDBBuilder.build(app)
-//    }
-//
-//    @Provides
-//    fun provideMainDAO(db: MainDB): MainDAO {
-//        return db.mainDao()
-//    }
-//}
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import iguerendiain.vamacodingchallenge.model.Album
+import iguerendiain.vamacodingchallenge.model.Genre
+import io.realm.kotlin.Realm
+import io.realm.kotlin.RealmConfiguration
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object DBModule {
+
+    @Provides
+    @Singleton
+    fun provideMainDB(): Realm {
+        val config = RealmConfiguration.create(
+            schema = setOf(
+                Album::class,
+                Genre::class
+            )
+        )
+
+        return Realm.open(config)
+    }
+}
