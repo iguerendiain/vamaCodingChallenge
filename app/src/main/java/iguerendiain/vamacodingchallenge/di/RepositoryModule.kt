@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import iguerendiain.vamacodingchallenge.domain.MainRepository
-import iguerendiain.vamacodingchallenge.domain.MainRepositoryImpl
+import iguerendiain.vamacodingchallenge.storage.MainRepositoryImpl
 import javax.inject.Singleton
 
 @Module

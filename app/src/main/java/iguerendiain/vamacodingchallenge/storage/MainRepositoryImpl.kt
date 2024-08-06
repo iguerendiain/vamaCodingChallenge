@@ -1,6 +1,7 @@
-package iguerendiain.vamacodingchallenge.domain
+package iguerendiain.vamacodingchallenge.storage
 
 import iguerendiain.vamacodingchallenge.api.MainAPI
+import iguerendiain.vamacodingchallenge.domain.MainRepository
 import iguerendiain.vamacodingchallenge.model.Album
 import io.realm.kotlin.Realm
 import io.realm.kotlin.query.Sort

@@ -79,7 +79,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Compose navigation
+    // Navigation
     implementation(libs.androidx.navigation.compose)
 
     // Hilt
