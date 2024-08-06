@@ -1,9 +1,10 @@
-package iguerendiain.vamacodingchallenge.domain
+package iguerendiain.vamacodingchallenge.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import iguerendiain.vamacodingchallenge.BuildConfig
+import iguerendiain.vamacodingchallenge.domain.MainRepository
 import iguerendiain.vamacodingchallenge.model.Album
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
