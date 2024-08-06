@@ -79,6 +79,9 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    // Compose navigation
+    implementation(libs.androidx.navigation.compose)
+
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
@@ -95,7 +98,5 @@ dependencies {
 
     // Realm
     implementation(libs.library.base)
-//    implementation("io.realm.kotlin:library-sync:1.16.0")
-    implementation(libs.kotlinx.coroutines.core)
 
 }
