@@ -12,7 +12,7 @@ import iguerendiain.vamacodingchallenge.model.Album
 @Composable
 fun AlbumList(
     albums: List<Album>,
-    onAlbumSelected: (album: Album) -> Unit
+    onAlbumSelected: (album: Album, coverWidth: Int) -> Unit
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
@@ -22,7 +22,7 @@ fun AlbumList(
     ) {
         items(albums.size) {
             val album = albums[it]
-            AlbumItem(album = album) { onAlbumSelected(album) }
+            AlbumItem(album = album) { coverWidth ->  onAlbumSelected(album, coverWidth) }
         }
     }
 }

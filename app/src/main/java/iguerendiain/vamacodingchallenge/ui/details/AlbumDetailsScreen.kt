@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
@@ -47,6 +47,7 @@ import java.text.SimpleDateFormat
 fun AlbumDetailsScreen(
     navController: NavController,
     albumId: String,
+    fallbackCoverWidth: Int,
     viewModel: MainViewModel
 ){
     val dateFormatter = SimpleDateFormat.getDateInstance()
@@ -68,8 +69,18 @@ fun AlbumDetailsScreen(
                 .fillMaxSize()
         ){
             SubcomposeAsyncImage(
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Fit,
                 model = album.getArtworkURL(imageWidth),
                 contentDescription = null,
+                error = {
+                    if (fallbackCoverWidth>0) SubcomposeAsyncImage(
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Fit,
+                        model = album.getArtworkURL(fallbackCoverWidth),
+                        contentDescription = null
+                    )
+                },
                 loading = {
                     Box(
                         contentAlignment = Alignment.Center,

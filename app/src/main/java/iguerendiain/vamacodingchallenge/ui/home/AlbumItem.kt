@@ -29,7 +29,7 @@ import coil.compose.AsyncImage
 import iguerendiain.vamacodingchallenge.model.Album
 
 @Composable
-fun AlbumItem(album: Album, onClick: () -> Unit){
+fun AlbumItem(album: Album, onClick: (coverWidth: Int) -> Unit){
     var cellWidth by remember { mutableIntStateOf(0) }
 
     Box(
@@ -39,7 +39,7 @@ fun AlbumItem(album: Album, onClick: () -> Unit){
             .padding(all = 5.dp)
             .aspectRatio(1f)
             .clip(RoundedCornerShape(8.dp))
-            .clickable { onClick.invoke() }
+            .clickable { onClick.invoke(cellWidth) }
     ){
         AsyncImage(
             model = album.getArtworkURL(cellWidth),

@@ -12,6 +12,7 @@ import iguerendiain.vamacodingchallenge.ui.home.HomeScreen
 import iguerendiain.vamacodingchallenge.ui.vm.MainViewModel
 
 const val ARGS_ALBUM_ID = "album_id"
+const val ARGS_FALLBACK_COVERWIDTH = "fallback_cover_width"
 
 @Composable
 fun MainNavigation(startDestination: String){
@@ -29,10 +30,14 @@ fun MainNavigation(startDestination: String){
         }
 
         composable(
-            route = Screen.AlbumDetailsScreen.route + "/{$ARGS_ALBUM_ID}",
+            route = Screen.AlbumDetailsScreen.route + "/{$ARGS_ALBUM_ID}/{$ARGS_FALLBACK_COVERWIDTH}",
             arguments = listOf(
                 navArgument(ARGS_ALBUM_ID) {
                     type = NavType.StringType
+                    nullable = false
+                },
+                navArgument(ARGS_FALLBACK_COVERWIDTH){
+                    type = NavType.IntType
                     nullable = false
                 }
             )
@@ -41,6 +46,7 @@ fun MainNavigation(startDestination: String){
                 AlbumDetailsScreen(
                     navController = navController,
                     albumId = albumId,
+                    fallbackCoverWidth = it.arguments?.getInt(ARGS_FALLBACK_COVERWIDTH)?:-1,
                     viewModel = mainViewModel
                 )
             }

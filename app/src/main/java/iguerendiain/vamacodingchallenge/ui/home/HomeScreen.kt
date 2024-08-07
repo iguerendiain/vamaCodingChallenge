@@ -1,5 +1,6 @@
 package iguerendiain.vamacodingchallenge.ui.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -26,6 +31,7 @@ import androidx.navigation.NavController
 import de.palm.composestateevents.EventEffect
 import iguerendiain.vamacodingchallenge.BuildConfig
 import iguerendiain.vamacodingchallenge.R
+import iguerendiain.vamacodingchallenge.ui.navigation.ARGS_FALLBACK_COVERWIDTH
 import iguerendiain.vamacodingchallenge.ui.vm.MainViewModel
 import iguerendiain.vamacodingchallenge.ui.navigation.Screen
 import iguerendiain.vamacodingchallenge.ui.vm.MainState
@@ -33,12 +39,15 @@ import iguerendiain.vamacodingchallenge.ui.vm.MainState
 @Composable
 fun HomeScreen(navController: NavController, viewModel: MainViewModel) {
     val mainState = viewModel.state.value
+    var coverWidth by remember { mutableIntStateOf(-1) }
 
     EventEffect(
         event = mainState.albumSelectedEvent,
         onConsumed = viewModel::consumeSelectAlbumEvent
     ) {
-        navController.navigate(Screen.AlbumDetailsScreen.route + "/${it.id}")
+        navController.navigate(
+            Screen.AlbumDetailsScreen.route + "/${it.id}/$coverWidth"
+        )
     }
 
     if (mainState.albums.isEmpty()) {
@@ -126,7 +135,10 @@ fun HomeScreen(navController: NavController, viewModel: MainViewModel) {
             }
             AlbumList(
                 albums = mainState.albums,
-                onAlbumSelected = { viewModel.selectAlbum(it) }
+                onAlbumSelected = { album, solvedCoverWidth ->
+                    coverWidth = solvedCoverWidth
+                    viewModel.selectAlbum(album)
+                }
             )
         }
     }
