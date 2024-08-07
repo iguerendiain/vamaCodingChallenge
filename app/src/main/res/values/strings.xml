@@ -12,4 +12,8 @@
     <string name="home_album_download_error_title">Oops!, Something went wrong</string>
     <string name="home_album_download_error_serverresponse">Server response: (%d) %s</string>
 
+    <string name="home_title">Top %d %s albums</string>
+    <string name="home_noalbums">No downloaded albums found</string>
+    <string name="home_noalbums_try_download">Try refreshing!</string>
+
 </resources>
