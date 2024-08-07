@@ -44,27 +44,29 @@ fun HomeScreen(navController: NavController, viewModel: MainViewModel) {
     if (mainState.albums.isEmpty()) {
         when (mainState.loadingState) {
             MainState.STATE_IDLE -> {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(all = 20.dp),
-                    verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.secondary,
-                        fontSize = 24.sp,
-                        lineHeight = 42.sp,
-                        text = stringResource(id = R.string.home_noalbums)
-                    )
-                    TextButton(onClick = { viewModel.refreshAlbums() }) {
+                if (mainState.albumDownloadErrorEvent==null) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(all = 20.dp),
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
                         Text(
                             textAlign = TextAlign.Center,
-                            color = MaterialTheme.colorScheme.primary,
-                            fontSize = 32.sp,
-                            text = stringResource(id = R.string.home_noalbums_try_download)
+                            color = MaterialTheme.colorScheme.secondary,
+                            fontSize = 24.sp,
+                            lineHeight = 42.sp,
+                            text = stringResource(id = R.string.home_noalbums)
                         )
+                        TextButton(onClick = { viewModel.refreshAlbums() }) {
+                            Text(
+                                textAlign = TextAlign.Center,
+                                color = MaterialTheme.colorScheme.primary,
+                                fontSize = 32.sp,
+                                text = stringResource(id = R.string.home_noalbums_try_download)
+                            )
+                        }
                     }
                 }
             }
