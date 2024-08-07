@@ -9,13 +9,11 @@ import com.facebook.flipper.plugins.inspector.DescriptorMapping
 import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
-import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin
 import com.facebook.soloader.SoLoader
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import iguerendiain.vamacodingchallenge.BuildConfig
 import javax.inject.Singleton
 
 @Module
@@ -30,7 +28,6 @@ object FlipperModule {
             AndroidFlipperClient.getInstance(app)?.apply {
                 start()
                 addPlugin(DatabasesFlipperPlugin(app))
-                addPlugin(SharedPreferencesFlipperPlugin(app, BuildConfig.DATA_STORE_NAME))
                 addPlugin(InspectorFlipperPlugin(app, DescriptorMapping.withDefaults()))
             }
         }else null

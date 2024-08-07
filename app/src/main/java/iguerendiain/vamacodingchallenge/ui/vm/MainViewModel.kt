@@ -1,16 +1,18 @@
-package iguerendiain.vamacodingchallenge.ui
+package iguerendiain.vamacodingchallenge.ui.vm
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import de.palm.composestateevents.consumed
+import de.palm.composestateevents.triggered
 import iguerendiain.vamacodingchallenge.BuildConfig
 import iguerendiain.vamacodingchallenge.domain.MainRepository
+import iguerendiain.vamacodingchallenge.storage.APIErrorInfo
 import iguerendiain.vamacodingchallenge.model.Album
+import iguerendiain.vamacodingchallenge.storage.APIErrorException
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Locale
@@ -19,18 +21,37 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val mainRepository: MainRepository): ViewModel() {
 
-    companion object{
-        const val EVENT_DOWNLOAD_FAILED = -1
-        const val EVENT_ALBUM_SELECTED = -2
-    }
-
     private val _state = mutableStateOf(MainState())
     val state: State<MainState> = _state
 
-    private val _eventBus = Channel<Int>()
-    val eventBus = _eventBus.receiveAsFlow()
-
     init { refreshAlbums() }
+
+    fun selectAlbum(album: Album){
+        _state.value = state.value.copy(
+            albumSelectedEvent = triggered(album)
+        )
+    }
+
+    fun consumeSelectAlbumEvent(){
+        _state.value = state.value.copy(
+            albumSelectedEvent = consumed()
+        )
+    }
+
+    fun consumeAlbumDownloadErrorEvent(){
+        _state.value = state.value.copy(albumDownloadErrorEvent = consumed())
+    }
+
+    fun clearDB(){
+        viewModelScope.launch(Dispatchers.IO) {
+            mainRepository.clearLocalAlbums()
+            _state.value = state.value.copy(
+                loadingState = MainState.STATE_IDLE,
+                albums = listOf(),
+                currentCopyrightText = ""
+            )
+        }
+    }
 
     fun refreshAlbums(){
         viewModelScope.launch(Dispatchers.IO) {
@@ -60,7 +81,19 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
                     mainRepository.storeLocalAlbums(downloadedFeed.results)
                     mainRepository.storeFeedData(downloadedFeed)
                 }
-            }else _eventBus.send(EVENT_DOWNLOAD_FAILED)
+            }else{
+                if (state.value.albums.isEmpty()) {
+                    val apiErrorInfo = (downloadAlbumsResult.exceptionOrNull() as APIErrorException?)
+                        ?.apiErrorInfo
+                        ?: APIErrorInfo(type = APIErrorInfo.UNKNOWN)
+
+                    withContext(Dispatchers.Main) {
+                        _state.value = state.value.copy(
+                            albumDownloadErrorEvent = triggered(apiErrorInfo)
+                        )
+                    }
+                }
+            }
 
             withContext(Dispatchers.Main) {
                 _state.value = state.value.copy(loadingState = MainState.STATE_IDLE)

@@ -1,5 +1,6 @@
 package iguerendiain.vamacodingchallenge.api
 
+import iguerendiain.vamacodingchallenge.BuildConfig
 import iguerendiain.vamacodingchallenge.model.Album
 import iguerendiain.vamacodingchallenge.model.ResponseBody
 import retrofit2.Response
@@ -10,8 +11,8 @@ interface MainAPI{
 
     @GET("{country}/music/most-played/{limit}/albums.json")
     suspend fun downloadMostPlayedAlbums(
-        @Path("country") country: String? = "us",
-        @Path("limit") limit: Int? = 100
+        @Path("country") country: String? = BuildConfig.ALBUM_DOWNLOAD_COUNTRY,
+        @Path("limit") limit: Int? = BuildConfig.ALBUM_DOWNLOAD_LIMIT,
     ): Response<ResponseBody<Album>>
 
 }

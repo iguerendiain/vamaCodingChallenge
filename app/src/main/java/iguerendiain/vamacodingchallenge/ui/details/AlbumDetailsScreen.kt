@@ -1,6 +1,5 @@
 package iguerendiain.vamacodingchallenge.ui.details
 
-import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -18,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
-import iguerendiain.vamacodingchallenge.ui.MainViewModel
+import iguerendiain.vamacodingchallenge.ui.vm.MainViewModel
 
 @Composable
 fun AlbumDetailsScreen(

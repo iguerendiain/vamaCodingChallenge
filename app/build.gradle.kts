@@ -25,11 +25,11 @@ android {
 
     buildTypes {
         all {
-            buildConfigField("Long", "API_TIMEOUT", "10000L")                               // 10 seconds
-            buildConfigField("Long", "API_CACHE", "10485760L")                              // 10MB
+            buildConfigField("Long", "API_TIMEOUT", "10000L")   // 10 seconds
+            buildConfigField("Long", "API_CACHE", "10485760L")  // 10MB
             buildConfigField("String", "API_URL", "\"https://rss.applemarketingtools.com/api/v2/\"")
-            buildConfigField("String", "DATA_STORE_NAME", "\"settings\"")
             buildConfigField("Integer", "ALBUM_DOWNLOAD_LIMIT", "100")
+            buildConfigField("String", "ALBUM_DOWNLOAD_COUNTRY", "\"US\"")
         }
 
         release {
@@ -92,7 +92,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
 
-    // Meta Flipper debugging tool
+    // Flipper
     implementation(libs.soloader)
     implementation(libs.flipper)
     implementation(libs.flipper.network.plugin)
@@ -103,5 +103,8 @@ dependencies {
     // Coil
     implementation(libs.coil)
     implementation(libs.coil.compose)
+
+    // One time events
+    implementation(libs.compose.state.events)
 
 }

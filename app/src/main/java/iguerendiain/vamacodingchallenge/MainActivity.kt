@@ -9,7 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
-import iguerendiain.vamacodingchallenge.ui.MainViewModel
+import iguerendiain.vamacodingchallenge.ui.vm.MainViewModel
 import iguerendiain.vamacodingchallenge.ui.navigation.MainNavigation
 import iguerendiain.vamacodingchallenge.ui.navigation.Screen
 import iguerendiain.vamacodingchallenge.ui.theme.VamaInterviewCodingChallengeTheme

@@ -8,6 +8,8 @@ import iguerendiain.vamacodingchallenge.storage.model.AlbumRealm
 import iguerendiain.vamacodingchallenge.storage.model.FeedRealm
 import io.realm.kotlin.Realm
 import io.realm.kotlin.UpdatePolicy
+import java.io.IOException
+import java.lang.RuntimeException
 import javax.inject.Inject
 
 class MainRepositoryImpl @Inject constructor(
@@ -21,12 +23,27 @@ class MainRepositoryImpl @Inject constructor(
 
             if (albumAPIResponse.isSuccessful) {
                 val feed = albumAPIResponse.body()?.feed
-                if (feed!=null) Result.success(feed)
+                if (feed != null) Result.success(feed)
                 else Result.failure(Exception("Empty feed"))
-            }else
-                Result.failure(Exception(albumAPIResponse.errorBody()?.string()))
+            } else
+                Result.failure(
+                    APIErrorException(
+                        APIErrorInfo(
+                            type = APIErrorInfo.UNKNOWN,
+                            errorBody = albumAPIResponse.errorBody()?.string(),
+                            statusCode = albumAPIResponse.code(),
+                            exception = null
+                        )
+                    )
+                )
         }catch (e: Exception){
-            Result.failure(e)
+            val errorType = when (e) {
+                is IOException -> APIErrorInfo.NETWORK
+                is RuntimeException -> APIErrorInfo.PARSE
+                else -> APIErrorInfo.UNKNOWN
+            }
+
+            Result.failure(APIErrorException(APIErrorInfo(type = errorType, exception = e)))
         }
     }
 
