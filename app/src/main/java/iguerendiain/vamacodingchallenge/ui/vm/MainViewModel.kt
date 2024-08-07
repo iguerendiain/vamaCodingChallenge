@@ -24,8 +24,6 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
     private val _state = mutableStateOf(MainState())
     val state: State<MainState> = _state
 
-    init { refreshAlbums() }
-
     fun selectAlbum(album: Album){
         _state.value = state.value.copy(
             albumSelectedEvent = triggered(album)
@@ -38,8 +36,8 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
         )
     }
 
-    fun consumeAlbumDownloadErrorEvent(){
-        _state.value = state.value.copy(albumDownloadErrorEvent = consumed())
+    fun clearDownloadError(){
+        _state.value = state.value.copy(albumDownloadErrorEvent = null)
     }
 
     fun clearDB(){
@@ -89,7 +87,7 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
 
                     withContext(Dispatchers.Main) {
                         _state.value = state.value.copy(
-                            albumDownloadErrorEvent = triggered(apiErrorInfo)
+                            albumDownloadErrorEvent = apiErrorInfo
                         )
                     }
                 }

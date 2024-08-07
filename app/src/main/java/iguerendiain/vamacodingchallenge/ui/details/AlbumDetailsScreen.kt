@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import iguerendiain.vamacodingchallenge.ui.vm.MainViewModel
@@ -23,10 +22,10 @@ import iguerendiain.vamacodingchallenge.ui.vm.MainViewModel
 fun AlbumDetailsScreen(
     navController: NavController,
     albumId: String,
-    viewModel: MainViewModel = hiltViewModel()
+    viewModel: MainViewModel
 ){
     val state = viewModel.state.value
-    val album = state.albums.find { it.id == albumId }
+    val album = viewModel.state.value.albums.find { it.id == albumId }
     val copyright = state.currentCopyrightText
     val uriHandler = LocalUriHandler.current
     var imageWidth by remember { mutableIntStateOf(0) }

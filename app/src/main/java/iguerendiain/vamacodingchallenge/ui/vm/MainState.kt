@@ -10,8 +10,8 @@ data class MainState(
     val loadingState: Int = STATE_IDLE,
     val selectedAlbum: Album? = null,
     val currentCopyrightText: String = "",
+    val albumDownloadErrorEvent: APIErrorInfo? = null,
 
-    val albumDownloadErrorEvent: StateEventWithContent<APIErrorInfo> = consumed(),
     val albumSelectedEvent: StateEventWithContent<Album> = consumed()
 ){
     companion object{
