@@ -50,6 +50,7 @@ fun AlbumDetailsScreen(
     viewModel: MainViewModel
 ){
     val dateFormatter = SimpleDateFormat.getDateInstance()
+
     val state = viewModel.state.value
     val album = viewModel.state.value.albums.find { it.id == albumId }
     val copyright = state.currentCopyrightText
@@ -146,14 +147,16 @@ fun AlbumDetailsScreen(
                 }
             }
 
-            Text(
-                modifier = Modifier.padding(top = 12.dp),
-                color = MaterialTheme.colorScheme.secondary,
-                text = stringResource(
-                    R.string.details_releasedate,
-                    dateFormatter.format(album.releaseDate)
+            album.renderReleaseDate(dateFormatter)?.let { renderedDate ->
+                Text(
+                    modifier = Modifier.padding(top = 12.dp),
+                    color = MaterialTheme.colorScheme.secondary,
+                    text = stringResource(
+                        R.string.details_releasedate,
+                        renderedDate
+                    )
                 )
-            )
+            }
 
             Column(
                 verticalArrangement = Arrangement.Bottom,

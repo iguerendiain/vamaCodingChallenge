@@ -2,18 +2,16 @@ package iguerendiain.vamacodingchallenge.storage.model
 
 import iguerendiain.vamacodingchallenge.model.Album
 import io.realm.kotlin.ext.realmListOf
-import io.realm.kotlin.types.RealmInstant
 import io.realm.kotlin.types.RealmList
 import io.realm.kotlin.types.RealmObject
 import io.realm.kotlin.types.annotations.PrimaryKey
-import java.util.Date
 
 class AlbumRealm: RealmObject {
     var artistName: String = ""
     @PrimaryKey
     var id: String = ""
     var name: String = ""
-    var releaseDate: RealmInstant = RealmInstant.now()
+    var releaseDate: String = ""
     var kind: String = ""
     var artistId: String = ""
     var artistUrl: String = ""
@@ -29,7 +27,7 @@ class AlbumRealm: RealmObject {
                 artistName = album.artistName
                 id = album.id
                 name = album.name
-                releaseDate = RealmInstant.from(album.releaseDate.time, 0)
+                releaseDate = album.releaseDate?:""
                 kind = album.kind
                 artistId = album.artistId
                 artistUrl = album.artistUrl
@@ -46,7 +44,7 @@ class AlbumRealm: RealmObject {
                 artistName = albumRealm.artistName,
                 id = albumRealm.id,
                 name = albumRealm.name,
-                releaseDate = Date(albumRealm.releaseDate.epochSeconds),
+                releaseDate = albumRealm.releaseDate,
                 kind = albumRealm.kind,
                 artistId = albumRealm.artistId,
                 artistUrl = albumRealm.artistUrl,
