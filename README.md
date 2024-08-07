@@ -2,12 +2,6 @@
 
 ## Ignacio Guerendiain
 
-### Demo video
-[![](http://img.youtube.com/vi/DWYFfzHFtM8/0.jpg)](http://www.youtube.com/watch?v=DWYFfzHFtM8)
-
-### Download latest APK
-[Download](https://github.com/iguerendiain/vamaCodingChallenge/raw/main/gradlew)
-
 ### Libraries used (besides Realm and Jetpack Compose as required)
 - [Navigation](https://developer.android.com/develop/ui/compose/navigation): Routing and navigation between screens handling
 - [Hilt](https://dagger.dev/hilt/): Dependency injection
