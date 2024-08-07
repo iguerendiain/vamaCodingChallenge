@@ -9,12 +9,12 @@
 [Download](https://github.com/iguerendiain/vamaCodingChallenge/raw/main/gradlew)
 
 ### Libraries used (besides Realm and Jetpack Compose as required)
-- [Navigation](https://developer.android.com/develop/ui/compose/navigation) for routing and navigation between screens handling
-- [Hilt](https://dagger.dev/hilt/) for dependency injection
-- [Retrofit](https://square.github.io/retrofit/) for endpoint calls and parsing (internally using GSon)
-- [Flipper](https://fbflipper.com/) to help debug the application
-- [Coil](https://coil-kt.github.io/coil/compose/) for lazy loading of images
-- [Compose-State-Events](https://github.com/leonard-palm/compose-state-events) for one time event handling
+- [Navigation](https://developer.android.com/develop/ui/compose/navigation): Routing and navigation between screens handling
+- [Hilt](https://dagger.dev/hilt/): Dependency injection
+- [Retrofit](https://square.github.io/retrofit/): Endpoint calls and parsing (internally using [Gson](https://github.com/google/gson))
+- [Flipper](https://fbflipper.com/): Help to debug the application
+- [Coil](https://coil-kt.github.io/coil/compose/): Image lazy loading and cachè
+- [Compose-State-Events](https://github.com/leonard-palm/compose-state-events): One time event handling
 
 ### Some potential questions and considerations
 
