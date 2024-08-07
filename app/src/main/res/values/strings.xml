@@ -17,6 +17,6 @@
     <string name="home_noalbums_try_download">Try refreshing!</string>
 
     <string name="details_releasedate">Release date: %s</string>
-    <string name="details_openitunes">Open on iTunes</string>
+    <string name="details_openitunes">Open in iTunes</string>
 
 </resources>
