@@ -85,6 +85,7 @@ dependencies {
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Retrofit
     implementation(libs.retrofit)
@@ -98,5 +99,9 @@ dependencies {
 
     // Realm
     implementation(libs.library.base)
+
+    // Coil
+    implementation(libs.coil)
+    implementation(libs.coil.compose)
 
 }

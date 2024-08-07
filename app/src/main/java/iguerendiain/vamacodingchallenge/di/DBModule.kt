@@ -4,8 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import iguerendiain.vamacodingchallenge.model.Album
-import iguerendiain.vamacodingchallenge.model.Genre
+import iguerendiain.vamacodingchallenge.storage.model.AlbumRealm
+import iguerendiain.vamacodingchallenge.storage.model.FeedRealm
+import iguerendiain.vamacodingchallenge.storage.model.GenreRealm
 import io.realm.kotlin.Realm
 import io.realm.kotlin.RealmConfiguration
 import javax.inject.Singleton
@@ -19,8 +20,9 @@ object DBModule {
     fun provideMainDB(): Realm {
         val config = RealmConfiguration.create(
             schema = setOf(
-                Album::class,
-                Genre::class
+                AlbumRealm::class,
+                GenreRealm::class,
+                FeedRealm::class
             )
         )
 

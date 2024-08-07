@@ -1,15 +1,13 @@
 package iguerendiain.vamacodingchallenge.model
 
-import java.util.Date
-
 data class Feed<T>(
-    val title: String,
-    val id: String,
-    val author: Author,
-    val links: List<Links>,
+    val title: String? = null,
+    val id: String? = null,
+    val author: Author? = null,
+    val links: List<Links> = listOf(),
     val copyright: String,
-    val country: String,
-    val icon: String,
-    val updated: Date,
-    val results: List<T>
+    val country: String? = null,
+    val icon: String? = null,
+    val updated: String? = null,
+    val results: List<T> = listOf()
 )
