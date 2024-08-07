@@ -24,7 +24,9 @@ class MainRepositoryImpl @Inject constructor(
             if (albumAPIResponse.isSuccessful) {
                 val feed = albumAPIResponse.body()?.feed
                 if (feed != null) Result.success(feed)
-                else Result.failure(Exception("Empty feed"))
+                else Result.failure(
+                    APIErrorException(APIErrorInfo(type = APIErrorInfo.EMPTY))
+                )
             } else
                 Result.failure(
                     APIErrorException(

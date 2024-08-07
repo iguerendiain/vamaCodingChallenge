@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Vama Interview Coding Challenge</string>
+
+    <string name="common_cancel">Cancel</string>
+    <string name="common_retry">Retry</string>
+
+    <string name="common_apierror_unknown_title">Unknown error</string>
+    <string name="common_apierror_network">There was a network error. Please make sure you have an active internet connection and try again.</string>
+    <string name="common_apierror_parse_title">Could not parse the server response </string>
+    <string name="common_apierror_empty">No albums were found in the server. Try again later.</string>
+
+    <string name="home_album_download_error_title">Oops!, Something went wrong</string>
+    <string name="home_album_download_error_serverresponse">Server response: (%d) %s</string>
+
 </resources>

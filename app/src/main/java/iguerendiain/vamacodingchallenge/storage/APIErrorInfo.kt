@@ -10,5 +10,6 @@ data class APIErrorInfo(
         const val UNKNOWN = -1
         const val NETWORK = 1
         const val PARSE = 2
+        const val EMPTY = 3
     }
 }
