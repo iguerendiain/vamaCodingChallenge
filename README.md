@@ -6,6 +6,9 @@
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/p-ruXoXMHDA/0.jpg)](https://www.youtube.com/watch?v=p-ruXoXMHDA)
 
+### Signed APK download
+
+[Download](https://github.com/iguerendiain/vamaCodingChallenge/releases/download/signed_apk/IgnacioGuerendiainVamaCodingChallenge.apk)
 
 ### Libraries used (besides Realm and Jetpack Compose as required)
 - [Navigation](https://developer.android.com/develop/ui/compose/navigation): Routing and navigation between screens handling
