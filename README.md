@@ -2,6 +2,11 @@
 
 ## Ignacio Guerendiain
 
+### Demo video
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/p-ruXoXMHDA/0.jpg)](https://www.youtube.com/watch?v=p-ruXoXMHDA)
+
+
 ### Libraries used (besides Realm and Jetpack Compose as required)
 - [Navigation](https://developer.android.com/develop/ui/compose/navigation): Routing and navigation between screens handling
 - [Hilt](https://dagger.dev/hilt/): Dependency injection
